@@ -1,5 +1,5 @@
 {
-    "name": "deralex/config-service-provider",
+    "name": "deralex/yaml-config-service-provider",
     "description": "Silex ServiceProvider for using YAML configuration files",
     "keywords": ["silex"],
     "license": "MIT",
