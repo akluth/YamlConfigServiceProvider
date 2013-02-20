@@ -36,7 +36,7 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
     }
 
 
-    public function register(Application $app, $file) {
+    public function register(Application $app) {
         $app['config'] = $app->protect(function() use ($app, $file) {
             $config = Yaml::parse($file);
         });
