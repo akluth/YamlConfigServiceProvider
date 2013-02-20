@@ -42,7 +42,7 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
         });
     }
 
-    public function boot() {
+    public function boot(Application $app) {
     }
 
     public function getConfigFile() {
