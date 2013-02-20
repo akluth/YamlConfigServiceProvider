@@ -36,9 +36,9 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
     }
 
 
-    public function register(Application $app) {
-        $app['config'] = $app->protect(function() use ($app) {
-
+    public function register(Application $app, $file) {
+        $app['config'] = $app->protect(function() use ($app, $file) {
+            $config = Yaml::parse($file);
         });
     }
 
@@ -48,3 +48,5 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
     public function getConfigFile() {
         return $this->file;
     }
+}
+?>
