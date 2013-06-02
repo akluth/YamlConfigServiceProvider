@@ -37,7 +37,13 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
 
 
     public function register(Application $app) {
-        $app['config'] = $config = Yaml::parse($this->file);
+        $config = Yaml::parse($this->file);
+
+    	if (isset($app['config']) && is_array($app['config'])) {
+			$app['config'] = array_merge($app['config'], $config);
+		} else {
+			$app['config'] = $config;
+		}
     }
 
     public function boot(Application $app) {
