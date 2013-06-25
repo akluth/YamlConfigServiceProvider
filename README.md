@@ -3,12 +3,15 @@ YamlConfigServiceProvider
 
 Service provider for Silex for using YAML configuration files.
 
+[![Latest Stable Version](https://poser.pugx.org/deralex/yaml-config-service-provider/v/stable.png)](https://packagist.org/packages/deralex/yaml-config-service-provider)
+[![Total Downloads](https://poser.pugx.org/deralex/yaml-config-service-provider/downloads.png)](https://packagist.org/packages/deralex/yaml-config-service-provider)
+
 Installation
 --------------
 
 To use it add following line to your composer.json:
 
-    deralex/yaml-config-service-provider": "1.0.x-dev"
+    deralex/yaml-config-service-provider": "1.0.1"
 
 
 Usage
