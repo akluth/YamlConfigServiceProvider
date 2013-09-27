@@ -11,7 +11,11 @@ Installation
 
 To use it add following line to your composer.json:
 
-    deralex/yaml-config-service-provider": "1.0.1"
+    "require": {
+        ...
+        "deralex/yaml-config-service-provider": "1.0.x-dev"
+        ...
+    }
 
 
 Usage
