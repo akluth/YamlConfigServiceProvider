@@ -8,7 +8,8 @@
         "email": "contact@alexanderkluth.com"
     }],
     "require": {
-        "silex/silex": "1.0.*@dev"
+        "silex/silex": "1.0.*@dev",
+        "symfony/yaml": "~2.1"
     },
     "require-dev": {
         "symfony/yaml": "~2.1"
