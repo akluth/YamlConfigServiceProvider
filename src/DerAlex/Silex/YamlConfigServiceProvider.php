@@ -53,4 +53,4 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
         return $this->file;
     }
 }
-?>
+
