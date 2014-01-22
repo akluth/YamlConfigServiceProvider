@@ -64,6 +64,7 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
                     $new_config = new YamlConfigServiceProvider($base_dir . $resource['resource']);
                     $new_config->register($app);
                 }
+                unset($config['imports']);
             }
         }
     }
