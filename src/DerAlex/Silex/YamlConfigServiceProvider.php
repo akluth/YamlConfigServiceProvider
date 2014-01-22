@@ -35,15 +35,37 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
         $this->file = $file;
     }
 
-
     public function register(Application $app) {
         $config = Yaml::parse($this->file);
 
-    	if (isset($app['config']) && is_array($app['config'])) {
-			$app['config'] = array_merge($app['config'], $config);
-		} else {
-			$app['config'] = $config;
-		}
+        if (is_array($config)) {
+            $this->importSearch($config, $app);
+
+            if (isset($app['config']) && is_array($app['config'])) {
+                $app['config'] = array_merge($app['config'], $config);
+            } else {
+                $app['config'] = $config;
+            }
+        }
+
+    }
+
+    /**
+     * Looks for import directives..
+     *
+     * @param array $config
+     *   The result of Yaml::parse().
+     */
+    public function importSearch(&$config, $app) {
+        foreach ($config as $key => $value) {
+            if ($key == 'imports') {
+                foreach ($value as $resource) {
+                    $base_dir = str_replace(basename($this->file), '', $this->file);
+                    $new_config = new YamlConfigServiceProvider($base_dir . $resource['resource']);
+                    $new_config->register($app);
+                }
+            }
+        }
     }
 
     public function boot(Application $app) {
