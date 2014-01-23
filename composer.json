@@ -9,14 +9,14 @@
     }],
     "require": {
         "silex/silex": ">=1.0",
-        "symfony/yaml": "~2.1"
+        "symfony/yaml": "~2.4"
     },
     "require-dev": {
-        "symfony/yaml": "~2.1",
-        "phpspec/phpspec": "2.2.x"
+        "symfony/yaml": "~2.4",
+        "phpspec/phpspec": "2.0.*@dev"
     },
     "suggest": {
-        "symfony/yaml": "~2.1"
+        "symfony/yaml": "~2.4"
     },
     "autoload": {
         "psr-0": { "DerAlex\\Silex": "src" }
@@ -25,5 +25,8 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }
