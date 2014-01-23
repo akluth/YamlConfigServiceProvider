@@ -35,7 +35,7 @@ config.yml:
     database:
         host: localhost
         user: myuser
-        password: mypassword`
+        password: mypassword
 
 index.php:
 
