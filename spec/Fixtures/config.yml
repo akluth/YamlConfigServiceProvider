@@ -1,4 +1,4 @@
-database:
-    host: localhost
-    user: myuser
-    password: mypassword
+debug: true
+imports:
+    databases:
+        resource: 'databases.yml'
