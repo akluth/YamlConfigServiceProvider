@@ -22,7 +22,7 @@ Usage
 --------------
 Include following line of code somewhere in your initial Silex file (index.php or whatever):
 
-    $app->register(new DerAlex\Silex\YamlConfigServiceProvider(PATH_TO_CONFIG));
+    $app->register(new DerAlex\Pimple\YamlConfigServiceProvider(PATH_TO_CONFIG));
 
 Now you have access to all of your configuration variables through `$app['config']`.
 
@@ -32,10 +32,23 @@ Example
 
 config.yml:
 
+    debug: true
+    imports:
+        databases:
+            resource: 'databases.yml'
+
+databases.yml:
+
     database:
-        host: localhost
-        user: myuser
-        password: mypassword
+        mysql:
+            host: localhost
+            user: mysql
+            password: mypassword
+        postgresql:
+            name: postgre
+            host: localhost
+            user: psql
+            password: mypassword
 
 index.php:
 
@@ -44,10 +57,12 @@ index.php:
 
         $app = new Silex\Application();
 
-        // Considering the config.yml files is in the same directory as index.php
-        $app->register(new DerAlex\Silex\YamlConfigServiceProvider('config.yml'));
+        // Considering the config.yml and databases.yml files are in the same directory as index.php
+        $app->register(new DerAlex\Pimple\YamlConfigServiceProvider('config.yml'));
 
-        echo $app['config']['database']['host'];
+        if ($app['config']['debug']) {
+            echo $app['config']['database']['mysql']['host'];
+        }
         ...
 
 License

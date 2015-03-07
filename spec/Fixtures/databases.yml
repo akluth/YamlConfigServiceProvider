@@ -1,0 +1,10 @@
+database:
+    mysql:
+        host: localhost
+        user: mysql
+        password: mypassword
+    postgresql:
+        name: postgre
+        host: localhost
+        user: psql
+        password: mypassword
