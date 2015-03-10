@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\DerAlex\Silex;
+namespace spec\DerAlex\Pimple;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -14,6 +14,6 @@ class YamlConfigServiceProviderSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('DerAlex\Silex\YamlConfigServiceProvider');
+        $this->shouldHaveType('DerAlex\Pimple\YamlConfigServiceProvider');
     }
 }
