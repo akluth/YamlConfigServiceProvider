@@ -1,14 +1,14 @@
 {
     "name": "deralex/yaml-config-service-provider",
     "description": "Silex ServiceProvider for using YAML configuration files",
-    "keywords": ["silex"],
+    "keywords": ["silex", "pimple"],
     "license": "MIT",
     "authors": [{
         "name": "Alexander Kluth",
         "email": "contact@alexanderkluth.com"
     }],
     "require": {
-        "silex/silex": ">=1.0 <=1.3",
+        "pimple/pimple": "~3.0",
         "symfony/yaml": "~2.4"
     },
     "require-dev": {
@@ -18,7 +18,7 @@
         "symfony/yaml": "~2.4"
     },
     "autoload": {
-        "psr-0": { "DerAlex\\Silex": "src" }
+        "psr-0": { "DerAlex\\Pimple": "src" }
     },
     "extra": {
         "branch-alias": {
