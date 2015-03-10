@@ -5,6 +5,7 @@ Service provider for Silex for using YAML configuration files.
 
 [![Latest Stable Version](https://poser.pugx.org/deralex/yaml-config-service-provider/v/stable.png)](https://packagist.org/packages/deralex/yaml-config-service-provider)
 [![Total Downloads](https://poser.pugx.org/deralex/yaml-config-service-provider/downloads.png)](https://packagist.org/packages/deralex/yaml-config-service-provider)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/755e831d-9f81-4caf-9e2d-1e099b55f2fc/mini.png)](https://insight.sensiolabs.com/projects/755e831d-9f81-4caf-9e2d-1e099b55f2fc)
 
 Installation
 --------------
