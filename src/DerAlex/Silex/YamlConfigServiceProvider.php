@@ -22,8 +22,8 @@
  ******************************************************************************/
 namespace DerAlex\Silex;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Symfony\Component\Yaml\Yaml;
 
 
@@ -35,16 +35,16 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
         $this->file = $file;
     }
 
-    public function register(Application $app) {
+    public function register(Container $pimple) {
         $config = Yaml::parse(file_get_contents($this->file));
 
         if (is_array($config)) {
-            $this->importSearch($config, $app);
+            $this->importSearch($config, $pimple);
 
-            if (isset($app['config']) && is_array($app['config'])) {
-                $app['config'] = array_replace_recursive($app['config'], $config);
+            if (isset($pimple['config']) && is_array($pimple['config'])) {
+                $pimple['config'] = array_replace_recursive($pimple['config'], $config);
             } else {
-                $app['config'] = $config;
+                $pimple['config'] = $config;
             }
         }
 
