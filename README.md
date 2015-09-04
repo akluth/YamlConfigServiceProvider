@@ -63,6 +63,7 @@ config.yml:
         - { resource: parameters.yml }
         - { resource: security.yml }
 
+
 ### Replacement variable example
 
 You can pass a array of variables to be replaced as the second parameter:
