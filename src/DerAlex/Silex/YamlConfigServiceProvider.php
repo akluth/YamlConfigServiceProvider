@@ -1,4 +1,5 @@
 <?php
+
 /******************************************************************************
  * Copyright (c) 2013 Alexander Kluth <contact@alexanderkluth.com>            *
  *                                                                            *
@@ -26,37 +27,47 @@ use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Symfony\Component\Yaml\Yaml;
 
-
 class YamlConfigServiceProvider implements ServiceProviderInterface
 {
     protected $file;
+    protected $variables;
 
-    public function __construct($file) {
+    public function __construct($file, array $variables = [])
+    {
         $this->file = $file;
+
+        if ($variables) {
+            foreach ($variables as $variable => $value) {
+                $this->variables['%' . $variable . '%'] = $value;
+            }
+        }
     }
 
-    public function register(Application $app) {
+    public function register(Application $app)
+    {
         $config = Yaml::parse(file_get_contents($this->file));
 
         if (is_array($config)) {
             $this->importSearch($config, $app);
 
             if (isset($app['config']) && is_array($app['config'])) {
-                $app['config'] = array_replace_recursive($app['config'], $config);
-            } else {
-                $app['config'] = $config;
-            }
-        }
+                var_dump($app['config']);
 
+                $config = array_replace_recursive($app['config'], $config);
+            }
+
+            if ($this->variables) {
+                foreach ($config as $k => $v) {
+                    $config[$k] = $this->replaceVariables($v);
+                }
+            }
+
+            $app['config'] = $config;
+        }
     }
 
-    /**
-     * Looks for import directives..
-     *
-     * @param array $config
-     *   The result of Yaml::parse().
-     */
-    public function importSearch(&$config, $app) {
+    public function importSearch(&$config, $app)
+    {
         foreach ($config as $key => $value) {
             if ($key == 'imports') {
                 foreach ($value as $resource) {
@@ -69,11 +80,34 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
         }
     }
 
-    public function boot(Application $app) {
+    public function replaceVariables($value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $k => $v) {
+                $value[$k] = $this->replaceVariables($v);
+            }
+
+            return $value;
+        }
+
+        if (is_string($value)) {
+            return strtr($value, $this->variables);
+        }
+
+        return $value;
     }
 
-    public function getConfigFile() {
+    public function boot(Application $app)
+    {
+    }
+
+    public function getConfigFile()
+    {
         return $this->file;
     }
-}
 
+    public function getVariables()
+    {
+        return $this->variables;
+    }
+}
