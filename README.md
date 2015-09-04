@@ -23,13 +23,15 @@ Usage
 --------------
 Include following line of code somewhere in your initial Silex file (index.php or whatever):
 
-    $app->register(new DerAlex\Silex\YamlConfigServiceProvider(PATH_TO_CONFIG));
+    $app->register(new DerAlex\Silex\YamlConfigServiceProvider(PATH_TO_CONFIG [, ARRAY_OF_REPLACEMENTS ]));
 
 Now you have access to all of your configuration variables through `$app['config']`.
 
 
-Example
+Examples
 ---------------
+
+### Basic example
 
 config.yml:
 
@@ -50,6 +52,37 @@ index.php:
 
         echo $app['config']['database']['host'];
         ...
+
+
+### Import example
+
+You can import other config files into one file, for example if you had `parameters.yml`, `security.yml`, you could import these with one call to `config.yml`
+
+config.yml:
+
+    imports:
+        - { resource: parameters.yml }
+        - { resource: security.yml }
+
+
+### Replacement variable example
+
+You can pass a array of variables to be replaced as the second parameter:
+
+parameters.yml:
+
+    twig.path:
+        - %basepath%/app/views,
+        - %basepath%/vendor/example/views
+
+index.php:
+
+    ...
+    $app->register(new DerAlex\Silex\YamlConfigServiceProvider('config.yml', [
+        'basepath' => realpath(__DIR__.'/../..')
+    ]));
+    ...
+
 
 License
 ----------------
