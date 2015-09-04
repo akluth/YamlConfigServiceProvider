@@ -51,8 +51,6 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
             $this->importSearch($config, $app);
 
             if (isset($app['config']) && is_array($app['config'])) {
-                var_dump($app['config']);
-
                 $config = array_replace_recursive($app['config'], $config);
             }
 
