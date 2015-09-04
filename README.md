@@ -59,6 +59,7 @@ index.php:
 You can import other config files into one file, for example if you had `parameters.yml`, `security.yml`, you could import these with one call to `config.yml`
 
 config.yml:
+
     imports:
         - { resource: parameters.yml }
         - { resource: security.yml }
