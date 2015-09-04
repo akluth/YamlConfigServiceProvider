@@ -36,7 +36,7 @@ Examples
 config.yml:
 
     database:
-        host: %mypath%/localhost
+        host: localhost
         user: myuser
         password: mypassword
 
