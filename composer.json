@@ -8,14 +8,14 @@
         "email": "contact@alexanderkluth.com"
     }],
     "require": {
-        "silex/silex": ">=1.0 <=1.3",
-        "symfony/yaml": "~2.4"
+        "silex/silex": "~2.1",
+        "symfony/yaml": "~3.3"
     },
     "require-dev": {
-        "phpspec/phpspec": "2.0.*@dev"
+        "phpspec/phpspec": "@stable"
     },
     "suggest": {
-        "symfony/yaml": "~2.4"
+        "symfony/yaml": "~3.3"
     },
     "autoload": {
         "psr-0": { "DerAlex\\Silex": "src" }
