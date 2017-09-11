@@ -36,7 +36,7 @@ class YamlConfigServiceProvider implements ServiceProviderInterface
     }
 
     public function register(Container $app) {
-        $config = Yaml::parse(file_get_contents($this->file));
+        $config = Yaml::parse(file_get_contents($this->file), Yaml::PARSE_CONSTANT);
 
         if (is_array($config)) {
             $this->importSearch($config, $app);

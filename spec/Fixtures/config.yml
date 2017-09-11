@@ -1,4 +1,6 @@
+db.password: sensiblePassword
+
 database:
     host: localhost
     user: myuser
-    password: mypassword
+    password: %db.password%
